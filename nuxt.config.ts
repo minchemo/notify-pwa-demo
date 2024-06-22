@@ -11,5 +11,10 @@ export default defineNuxtConfig({
       ]
     }
   },
+  nitro: {
+    plugins: [
+      '@/server/index'
+    ]
+  },
   devtools: { enabled: true }
 })

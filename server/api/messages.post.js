@@ -1,8 +1,9 @@
 import { getMessaging } from "firebase-admin/messaging"
+import { firebaseApp } from "@/server/index"
 
 export default defineEventHandler(async (e) => {
   const { token } = await readBody(e)
-  const messaging = getMessaging()
+  const messaging = getMessaging(firebaseApp)
 
   // Example payload from POST
   const payload = {
@@ -21,6 +22,10 @@ export default defineEventHandler(async (e) => {
     },
   })
 
+  return {
+    success: true,
+    message: 'ok'
+  }
   // list out users
   // loop 100 at a time
   // send notif
