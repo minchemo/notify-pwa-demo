@@ -17,16 +17,26 @@ const messaging = firebase.messaging()
 
 // Listen to bg messages
 messaging.onBackgroundMessage(payload => {
-  console.log("Received a bg message: ", payload);
-
+  // console.log("Received a bg message: ", payload);
 
   const title = payload.notification.title
   const notification = {
     body: "Notification Body",
-    icon: "/icon.png"
+    icon: "/icon.png",
+    actions: [
+      {
+          action: "view-content",
+          title: "Yes"
+      },
+      {
+          action: "go-home",
+          title: "No"
+      }
+  ]
   }
 
   // Show notification when message received
   self.registration.showNotification(title, notification);
+  self.navigator.setAppBadge(1)
 })
 
