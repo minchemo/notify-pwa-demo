@@ -40,3 +40,10 @@ messaging.onBackgroundMessage(payload => {
   self.navigator.setAppBadge(1)
 })
 
+self.addEventListener('notificationclick', event => {
+  // Close the notification.
+  event.notification.close();
+  self.navigator.setAppBadge()
+
+
+}, false);
