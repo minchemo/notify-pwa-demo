@@ -1,7 +1,13 @@
-<script lang="ts" setup>
-import { getToken } from 'firebase/messaging'
+<template>
+  <div>{{ messagingToken }}</div>
+  <button v-if="messagingToken" @click="copy">Copy to Clipboard</button>
+  <button @click="requestPermission">Allow Notifications</button>
+</template>
 
-const messagingToken = ref("");
+<script setup>
+import { getToken } from "firebase/messaging"
+
+const messagingToken = ref("")
 
 onMounted(() => {
   requestPermission()
@@ -10,11 +16,11 @@ onMounted(() => {
 function requestPermission() {
   if (!window.Notification) return
 
-  if (window.Notification.permission === 'granted') {
+  if (window.Notification.permission === "granted") {
     setToken()
   } else {
     window.Notification.requestPermission((value) => {
-      if (value === 'granted') {
+      if (value === "granted") {
         setToken()
       }
     })
@@ -24,7 +30,8 @@ function requestPermission() {
 async function setToken() {
   const { $messaging } = useNuxtApp()
   const token = await getToken($messaging, {
-    vapidKey: "..."
+    vapidKey:
+      "BIOg7rlie9PJhqOJ8pfYCpKNj3oCw-csKCREjgWPHaxhPZXvROeSdyqjJPZ1anKyHEW8Bk_6r0_keysmmlsuQXs",
   })
 
   // Send token to server, save in user schema
@@ -36,9 +43,3 @@ function copy() {
   navigator.clipboard.writeText(messagingToken.value)
 }
 </script>
-
-<template>
-  <div>{{ messagingToken }}</div>
-  <button v-if="messagingToken" @click="copy">Copy to Clipboard</button>
-  <button @click="requestPermission">Allow Notifications</button>
-</template>

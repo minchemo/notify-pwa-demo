@@ -15,13 +15,12 @@ declare module 'vue' {
 
 export default defineNuxtPlugin(() => {
   const app = getApps()[0] ?? initializeApp({
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
+    apiKey: "AIzaSyDPqgAzcJKhBn4NljgxR6GVJYk8dZ_z_Y4",
+    authDomain: "pwa-notify-791b8.firebaseapp.com",
+    projectId: "pwa-notify-791b8",
+    storageBucket: "pwa-notify-791b8.appspot.com",
+    messagingSenderId: "1060548013925",
+    appId: "1:1060548013925:web:32771e11d27b0ffcf7fb8c"
   })
 
   const messaging = getMessaging(app)
