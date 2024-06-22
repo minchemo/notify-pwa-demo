@@ -11,6 +11,13 @@ const messagingToken = ref("")
 
 onMounted(() => {
   requestPermission()
+
+  if (window.matchMedia("(display-mode: standalone)").matches) {
+    console.log("Running in PWA mode")
+    alert('you are in pwa')
+  } else {
+    console.log("Not running in PWA mode")
+  }
 })
 
 function requestPermission() {
